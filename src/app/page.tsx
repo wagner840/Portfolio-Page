@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Github } from 'lucide-react';
+import { Github, Package, Gitlab, Code } from 'lucide-react';
 import { EmoToggleButton, useEmoMode } from '@/components/emo-toggle-button';
 import { ScrollArea } from "@/components/ui/scroll-area"
 
@@ -71,12 +71,12 @@ export default function Home() {
   const containerClass = `container mx-auto py-10 ${isEmoMode ? 'emo-mode-active' : ''}`;
 
   const technologies = [
-    { name: 'Next.js', icon: '/nextjs.svg' },
-    { name: 'React', icon: '/react.svg' },
-    { name: 'Tailwind CSS', icon: '/tailwindcss.svg' },
-    { name: 'TypeScript', icon: '/typescript.svg' },
-    { name: 'Node.js', icon: '/nodejs.svg' },
-    { name: 'Shadcn UI', icon: '/shadcn.svg' },
+    { name: 'Next.js', icon: Package },
+    { name: 'React', icon: Code },
+    { name: 'Tailwind CSS', icon: Gitlab },
+    { name: 'TypeScript', icon: Code },
+    { name: 'Node.js', icon: Code }, //Using Code icon for node since there isn't one available
+    { name: 'Shadcn UI', icon: Package },//Using Package icon for Shadcn since there isn't one available
     // Add more technologies and their icons here
   ];
 
@@ -158,7 +158,11 @@ export default function Home() {
               <div className="flex items-center space-x-4 p-4">
                 {technologies.map((tech, index) => (
                   <div key={index} className="flex flex-col items-center justify-center w-32">
-                    <img src={tech.icon} alt={tech.name} className="h-16 w-16 object-contain mb-2" />
+                    {tech.icon ? (
+                      <tech.icon className="h-16 w-16 object-contain mb-2" />
+                    ) : (
+                      <Package className="h-16 w-16 object-contain mb-2" /> // Fallback icon
+                    )}
                     <p className="text-sm text-muted-foreground">{tech.name}</p>
                   </div>
                 ))}
@@ -170,4 +174,3 @@ export default function Home() {
     </>
   );
 }
-
