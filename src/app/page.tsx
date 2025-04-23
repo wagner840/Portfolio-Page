@@ -203,10 +203,21 @@ export default function Home() {
             <div className="overflow-hidden relative">
               <div
                 ref={scrollRef}
-                className="flex items-center space-x-4 p-4 transition-transform duration-2000" // Increased duration for smoother transition
+                className="flex items-center space-x-4 p-4 transition-transform duration-2000 whitespace-nowrap" // Increased duration for smoother transition
               >
                 {technologies.map((tech, index) => (
                   <div key={index} className="flex flex-col items-center justify-center w-32 shrink-0">
+                    {tech.icon ? (
+                      <tech.icon className="h-16 w-16 object-contain mb-2" />
+                    ) : (
+                      <Package className="h-16 w-16 object-contain mb-2" /> // Fallback icon
+                    )}
+                    <p className="text-sm text-muted-foreground">{tech.name}</p>
+                  </div>
+                ))}
+                {/* Duplicate technologies to create a seamless loop */}
+                {technologies.map((tech, index) => (
+                  <div key={`duplicate-${index}`} className="flex flex-col items-center justify-center w-32 shrink-0">
                     {tech.icon ? (
                       <tech.icon className="h-16 w-16 object-contain mb-2" />
                     ) : (
@@ -223,5 +234,3 @@ export default function Home() {
     </>
   );
 }
-
-
