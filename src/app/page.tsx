@@ -70,6 +70,7 @@ export default function Home() {
   const containerClass = `container mx-auto py-10 ${isEmoMode ? 'emo-mode-active' : ''}`;
 
   return (
+    <>
     <div className={containerClass}>
       {/* About Me Section */}
       <section id="about" className="mb-16">
@@ -127,7 +128,8 @@ export default function Home() {
                   </div>
                 </CardContent>
               </Card>
-            ))}
+            ))
+           )}
            {/* Mensagem se nenhum projeto for exibido após o filtro */}
            {filteredProjects.length === 0 && !fetchError && (
             <p className="text-muted-foreground">Nenhum projeto para exibir após o filtro.</p>
@@ -135,5 +137,6 @@ export default function Home() {
         </div>
       </section>
     </div>
+    </>
   );
 }

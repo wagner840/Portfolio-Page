@@ -1,0 +1,82 @@
+/* Styles for Emo Mode */
+.emo-mode-active {
+  /* Base background */
+  background-color: #000 !important; 
+  color: #ff0000 !important;
+  background-image: none !important;
+}
+
+.emo-mode-active body {
+  background-color: #000 !important;
+  color: #ff0000 !important;
+  font-family: 'Times New Roman', serif !important;
+  background-image: none !important;
+}
+
+/* Cards styling for EMO mode */
+.emo-mode-active .card,
+.emo-mode-active [class*="Card"] {
+  background-color: #111 !important;
+  border: 1px solid #500000 !important;
+  box-shadow: 0 4px 8px rgba(255, 0, 0, 0.2) !important;
+}
+
+/* Button styling for EMO mode */
+.emo-mode-active button,
+.emo-mode-active [class*="Button"] {
+  background-color: #500000 !important;
+  color: #fff !important;
+  border: 1px solid #ff0000 !important;
+}
+
+.emo-mode-active button:hover,
+.emo-mode-active [class*="Button"]:hover {
+  background-color: #800000 !important;
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.5) !important;
+}
+
+/* Typography styling for EMO mode */
+.emo-mode-active h1,
+.emo-mode-active h2,
+.emo-mode-active h3,
+.emo-mode-active [class*="Title"] {
+  color: #ff0000 !important;
+  font-family: 'Metal Mania', 'Cinzel', serif !important;
+  text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.5) !important;
+}
+
+.emo-mode-active p,
+.emo-mode-active [class*="Description"] {
+  color: #c0c0c0 !important;
+}
+
+/* Add a gothic-style font for certain elements */
+.gothic-text {
+  font-family: 'Metal Mania', 'Cinzel', serif !important;
+  letter-spacing: 1px;
+}
+
+/* Blood animation effect (for future implementation) */
+@keyframes blood-drip {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100%;
+  }
+}
+
+.emo-mode-active::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  background: linear-gradient(to bottom, transparent, transparent 95%, #ff0000 95%, #ff0000 100%);
+  background-size: 100% 50px;
+  pointer-events: none;
+  opacity: 0.4;
+  animation: blood-drip 8s linear infinite;
+  z-index: 1000;
+}
