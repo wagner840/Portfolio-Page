@@ -74,7 +74,7 @@ export default function Home() {
     <div className={containerClass}>
       {/* About Me Section */}
       <section id="about" className="mb-16">
-        <Card className={`bg-background shadow-lg rounded-lg overflow-hidden ${isEmoMode ? 'emo-mode-active' : ''}`}>
+        <Card className={`bg-background shadow-lg rounded-lg overflow-hidden ${isEmoMode ? 'emo-mode-active border-red-500' : ''}`}>
           <CardHeader className="flex flex-row items-center">
             <Avatar className="w-20 h-20 mr-4">
               <AvatarImage src="https://picsum.photos/200/200" alt="Wagner Guilherme" />
@@ -109,7 +109,7 @@ export default function Home() {
             filteredProjects.map((project) => (
               <Card
                 key={project.id}
-                className={`relative bg-gradient-to-br from-card to-background shadow-xl rounded-xl overflow-hidden transition-all duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-xl hover:ring-2 hover:ring-primary hover:ring-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 hover:will-change-transform ${isEmoMode ? 'emo-mode-active' : ''}`}
+                className={`relative bg-gradient-to-br from-card to-background shadow-xl rounded-xl overflow-hidden transition-all duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-xl hover:ring-2 hover:ring-primary hover:ring-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 hover:will-change-transform ${isEmoMode ? 'emo-mode-active border-red-500' : ''}`}
               >
                 <CardHeader>
                   <CardTitle className="text-xl font-semibold tracking-tight">{project.name}</CardTitle>
@@ -140,3 +140,4 @@ export default function Home() {
     </>
   );
 }
+
