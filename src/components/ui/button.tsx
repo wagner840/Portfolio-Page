@@ -9,7 +9,8 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        // Refined Default Button for Frutiger Aero
+        default: "bg-gradient-to-b from-primary to-primary/90 text-primary-foreground shadow-lg rounded-lg hover:from-primary hover:to-primary/80 focus-visible:ring-primary", // More pronounced gradient, shadow, rounded, hover effect
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:

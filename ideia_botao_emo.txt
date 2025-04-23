@@ -1,0 +1,142 @@
+## Documento: Implementação do Botão EMO e Tema Gótico no Portfólio
+
+**Visão Geral:**
+
+Este documento descreve a ideia e os passos para implementar um recurso único no portfólio, permitindo que o usuário alterne para um tema "EMO", que transforma o design em uma estética dark/gótica.
+
+**1. Funcionalidade:**
+
+*   **Botão "EMO":** Um botão visível na interface do site (inicialmente colocado na seção "About Me").
+*   **Toggle EMO Mode:** Ao clicar no botão, o site deve alternar entre o tema padrão (Frutiger Aero) e o tema EMO.
+*   **Persistência (Opcional):** Em implementações futuras, o estado do EMO Mode pode ser armazenado (localmente ou em um cookie) para que a preferência do usuário seja mantida entre as sessões.
+
+**2. Implementação (Passos):
+
+**2.1. Estrutura de Componentes (Next.js):**
+
+*   **Componente Cliente (EmoToggleButton.tsx):** Responsável por renderizar o botão e controlar o estado do EMO Mode (ativo/inativo) usando o hook `useState`.
+*   **Contexto (EmoModeContext):** Um Contexto do React para fornecer o estado do EMO Mode para toda a aplicação, permitindo que outros componentes reajam à mudança de tema.
+*   **Componente Layout (\_app.tsx ou layout.tsx):** Envolve a aplicação com o `EmoModeProvider` para disponibilizar o contexto.
+
+**2.2. Código (Detalhes):
+
+*   **EmoToggleButton.tsx:**
+
+    ```javascript
+    'use client';
+
+    import { useState, createContext, useContext } from 'react';
+    import { Button } from '@/components/ui/button';
+
+    // 1. Create a Context for Emo Mode
+    interface EmoModeContextType {
+      isEmoMode: boolean;
+      setIsEmoMode: (value: boolean) => void;
+    }
+
+    const EmoModeContext = createContext<EmoModeContextType | undefined>(undefined);
+
+    // Hook for using the EmoModeContext
+    export function useEmoMode() {
+      const context = useContext(EmoModeContext);
+      if (!context) {
+        throw new Error('useEmoMode must be used within a EmoModeProvider');
+      }
+      return context;
+    }
+
+    // 2. Create a Provider Component
+    interface EmoModeProviderProps {
+      children: React.ReactNode;
+    }
+
+    export function EmoModeProvider({ children }: EmoModeProviderProps) {
+      const [isEmoMode, setIsEmoMode] = useState(false);
+
+      return (
+        <EmoModeContext.Provider value={{ isEmoMode, setIsEmoMode }}>
+          {children}
+        </EmoModeContext.Provider>
+      );
+    }
+
+    // 3. Create the Emo Toggle Button Component
+    export function EmoToggleButton() {
+      const { isEmoMode, setIsEmoMode } = useEmoMode();
+
+      return (
+        <Button variant={isEmoMode ? 'destructive' : 'secondary'} onClick={() => setIsEmoMode(!isEmoMode)}>
+          EMO
+        </Button>
+      );
+    }
+    ```
+*   **layout.tsx:**
+
+    ```javascript
+    import { EmoModeProvider } from '@/components/emo-toggle-button';
+
+    export default function RootLayout({ children }) {
+      return (
+        <html>
+          <body>
+            <EmoModeProvider>{children}</EmoModeProvider>
+          </body>
+        </html>
+      );
+    }
+    ```
+
+*   **page.tsx:**
+
+    ```javascript
+    'use client';
+    import { EmoToggleButton, useEmoMode } from '@/components/emo-toggle-button';
+
+    function Home() {
+      const { isEmoMode } = useEmoMode();
+
+      return (
+        <div className={`container ${isEmoMode ? 'emo-mode-active' : ''}`}>
+          {/* ... */}
+        </div>
+      );
+    }
+    ```
+
+**2.3. Estilos (globals.css):**
+
+*   Definir estilos para o tema EMO dentro do arquivo `globals.css`, usando a classe `.emo-mode-active` para aplicar os estilos condicionalmente.
+
+    ```css
+    /* Styles for Emo Mode */
+    .emo-mode-active {
+      background-color: #000; /* Black background */
+      color: #FF0000; /* Red text */
+    }
+
+    .emo-mode-active body {
+      background-color: #000;
+      color: #FF0000;
+    }
+    ```
+
+**3. Próximos Passos:**
+
+*   Resolver o erro de parsing JSX que está ocorrendo.
+*   Confirmar que a classe condicional está sendo aplicada corretamente.
+*   Implementar o efeito de "sangue pingando" (JavaScript + Canvas/SVG).
+*   Refinar os estilos do tema EMO (fontes, imagens, etc.).
+
+**4. Considerações de Design (EMO Mode):**
+
+*   **Cores:** Preto, vermelho, tons de cinza escuro.
+*   **Tipografia:** Fontes góticas ou com serifa (para títulos), fontes sans-serif para o corpo do texto.
+*   **Imagens/Assets:** Texturas de grunge, padrões góticos, imagens com tema dark.
+*   **Efeitos Visuais:** Efeito de "sangue pingando", sombras dramáticas, etc.
+
+**Observações:**
+
+*   Este documento é um guia. A implementação exata pode variar dependendo da estrutura do projeto e das preferências de design.
+*   A prioridade é resolver os erros existentes e garantir que a lógica básica do botão e do tema EMO esteja funcionando.
+*   O efeito de "sangue pingando" será implementado em um passo posterior, pois é mais complexo e requer JavaScript e manipulação do DOM.
