@@ -13,6 +13,9 @@ import {
   SiTailwindcss,
   SiTypescript,
   SiNodedotjs,
+  SiJavascript,
+  SiHtml5,
+  SiCss3
 } from "react-icons/si";
 import { FaGem } from "react-icons/fa"; // Icon for Gemini
 import { TbRobot } from "react-icons/tb"; // Generic robot icon for Claude/GPT
@@ -85,6 +88,9 @@ export default function Home() {
     { name: 'Tailwind CSS', icon: SiTailwindcss },
     { name: 'TypeScript', icon: SiTypescript },
     { name: 'Node.js', icon: SiNodedotjs },
+    { name: 'JavaScript', icon: SiJavascript },
+     { name: 'HTML', icon: SiHtml5 },
+    { name: 'CSS', icon: SiCss3 },
     { name: 'Shadcn UI', icon: Package },//Using Package icon for Shadcn since there isn't one available
     { name: 'Gemini', icon: FaGem }, // Add Gemini icon
     { name: 'Claude 3.5', icon: TbRobot }, // Add Claude icon
