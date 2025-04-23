@@ -87,7 +87,7 @@ export default function Home() {
               Desenvolvedor FullStack e entusiasta de Inteligência Artificial. Explorando novas tecnologias e criando soluções inovadoras.
             </CardDescription>
             <div className="mt-4 flex gap-4">
-              <Button variant="secondary" asChild>
+              <Button variant="secondary" asChild className={`${isEmoMode ? 'emo-mode-active' : ''}`}>
                 <a href="https://github.com/wagner840" target="_blank" rel="noopener noreferrer" className="flex items-center">
                   <Github className="mr-2 h-4 w-4" />
                   GitHub
@@ -119,7 +119,7 @@ export default function Home() {
                     {project.description || 'Sem descrição disponível.'}
                   </CardDescription>
                   <div className="mt-4">
-                    <Button asChild>
+                    <Button asChild className={`${isEmoMode ? 'emo-mode-active' : ''}`}>
                       <a href={project.html_url} target="_blank" rel="noopener noreferrer" className="flex items-center">
                         <Github className="mr-2 h-4 w-4" />
                         Ver no GitHub
@@ -140,4 +140,3 @@ export default function Home() {
     </>
   );
 }
-
