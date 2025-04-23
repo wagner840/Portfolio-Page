@@ -7,6 +7,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Github, Package, Gitlab, Code } from 'lucide-react';
 import { EmoToggleButton, useEmoMode } from '@/components/emo-toggle-button';
 import { ScrollArea } from "@/components/ui/scroll-area"
+import {
+  SiNextdotjs,
+  SiReact,
+  SiTailwindcss,
+  SiTypescript,
+  SiNodedotjs,
+} from "react-icons/si";
 
 interface Project {
   id: number;
@@ -71,11 +78,11 @@ export default function Home() {
   const containerClass = `container mx-auto py-10 ${isEmoMode ? 'emo-mode-active' : ''}`;
 
   const technologies = [
-    { name: 'Next.js', icon: Package },
-    { name: 'React', icon: Code },
-    { name: 'Tailwind CSS', icon: Gitlab },
-    { name: 'TypeScript', icon: Code },
-    { name: 'Node.js', icon: Code }, //Using Code icon for node since there isn't one available
+    { name: 'Next.js', icon: SiNextdotjs },
+    { name: 'React', icon: SiReact },
+    { name: 'Tailwind CSS', icon: SiTailwindcss },
+    { name: 'TypeScript', icon: SiTypescript },
+    { name: 'Node.js', icon: SiNodedotjs },
     { name: 'Shadcn UI', icon: Package },//Using Package icon for Shadcn since there isn't one available
     // Add more technologies and their icons here
   ];
@@ -174,3 +181,4 @@ export default function Home() {
     </>
   );
 }
+
