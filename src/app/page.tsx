@@ -101,7 +101,7 @@ export default function Home() {
   // Carousel logic
   const scrollRef = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
-  const scrollAmount = 1; // Smaller scroll amount for smoother animation
+  const scrollAmount = -1; // Smaller scroll amount for smoother animation, negative for right-to-left
   const transitionDuration = 20; // Reduced duration for smoother, faster transition
 
   useEffect(() => {
@@ -110,8 +110,8 @@ export default function Home() {
         const maxScroll = scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
         let newPosition = scrollPosition + scrollAmount;
 
-        if (newPosition > maxScroll) {
-          newPosition = 0; // Reset to the beginning
+        if (newPosition < 0) {
+          newPosition = maxScroll; // Reset to the end
         }
 
         setScrollPosition(newPosition);
@@ -123,7 +123,7 @@ export default function Home() {
     }, transitionDuration);
 
     return () => clearInterval(intervalId); // Clean up on unmount
-  }, [scrollPosition]);
+  }, [scrollPosition, scrollAmount, transitionDuration]);
 
 
   return (
@@ -223,4 +223,5 @@ export default function Home() {
     </>
   );
 }
+
 
