@@ -184,3 +184,12 @@
 .emo-mode-active .recharts-line-curve {
     stroke: #ff0000; /* Set the stroke color to red */
 }
+
+.emo-mode-active .bg-gradient-to-br:hover {
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.7); /* Add a red glow effect */
+}
+
+/* Specific EMO mode adjustments for button backgrounds*/
+.emo-mode-active .bg-gradient-to-br .bg-background {
+    background-color: #330000 !important; /* Darker red for better contrast */
+}
