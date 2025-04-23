@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Github, Package, Gitlab, Code } from 'lucide-react';
+import { Github, Package } from 'lucide-react';
 import { EmoToggleButton, useEmoMode } from '@/components/emo-toggle-button';
 import { ScrollArea } from "@/components/ui/scroll-area"
 import {
@@ -92,6 +92,34 @@ export default function Home() {
     // Add more technologies and their icons here
   ];
 
+  // Carousel logic
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const scrollAmount = 1; // Smaller scroll amount for smoother animation
+  const transitionDuration = 20; // Reduced duration for smoother, faster transition
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (scrollRef.current) {
+        const maxScroll = scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
+        let newPosition = scrollPosition + scrollAmount;
+
+        if (newPosition > maxScroll) {
+          newPosition = 0; // Reset to the beginning
+        }
+
+        setScrollPosition(newPosition);
+        scrollRef.current.scrollTo({
+          left: newPosition,
+          behavior: 'smooth',
+        });
+      }
+    }, transitionDuration);
+
+    return () => clearInterval(intervalId); // Clean up on unmount
+  }, [scrollPosition]);
+
+
   return (
     <>
       <div className={containerClass}>
@@ -166,10 +194,13 @@ export default function Home() {
         <section id="technologies" className="py-8 bg-secondary">
           <div className="container mx-auto">
             <h2 className="text-2xl font-semibold tracking-tight mb-4 text-center">Tecnologias Utilizadas</h2>
-            <ScrollArea className="w-full">
-              <div className="flex items-center space-x-4 p-4">
+            <div className="overflow-hidden relative">
+              <div
+                ref={scrollRef}
+                className="flex items-center space-x-4 p-4 transition-transform duration-2000" // Increased duration for smoother transition
+              >
                 {technologies.map((tech, index) => (
-                  <div key={index} className="flex flex-col items-center justify-center w-32">
+                  <div key={index} className="flex flex-col items-center justify-center w-32 shrink-0">
                     {tech.icon ? (
                       <tech.icon className="h-16 w-16 object-contain mb-2" />
                     ) : (
@@ -179,11 +210,10 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-            </ScrollArea>
+            </div>
           </div>
         </section>
       )}
     </>
   );
 }
-
