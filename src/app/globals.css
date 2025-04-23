@@ -193,3 +193,8 @@
 .emo-mode-active .bg-gradient-to-br .bg-background {
     background-color: #330000 !important; /* Darker red for better contrast */
 }
+
+/* EMO mode adjustments for card borders */
+.emo-mode-active .bg-gradient-to-br {
+    border: 1px solid #500000; /* Red border */
+}
