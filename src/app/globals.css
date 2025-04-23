@@ -198,3 +198,12 @@
 .emo-mode-active .bg-gradient-to-br {
     border: 1px solid #500000; /* Red border */
 }
+/*Hover of the cards*/
+.bg-gradient-to-br:hover {
+  box-shadow: 0 0 10px rgba(100, 100, 100, 0.7); /* Add a red glow effect */
+}
+
+/* Emo mode active hover*/
+.emo-mode-active .bg-gradient-to-br:hover {
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.7); /* Add a red glow effect */
+}
