@@ -1,11 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Github } from 'lucide-react';
 import { EmoToggleButton, useEmoMode } from '@/components/emo-toggle-button';
+import { ScrollArea } from "@/components/ui/scroll-area"
 
 interface Project {
   id: number;
@@ -69,75 +70,103 @@ export default function Home() {
 
   const containerClass = `container mx-auto py-10 ${isEmoMode ? 'emo-mode-active' : ''}`;
 
+  const technologies = [
+    { name: 'Next.js', icon: '/nextjs.svg' },
+    { name: 'React', icon: '/react.svg' },
+    { name: 'Tailwind CSS', icon: '/tailwindcss.svg' },
+    { name: 'TypeScript', icon: '/typescript.svg' },
+    { name: 'Node.js', icon: '/nodejs.svg' },
+    { name: 'Shadcn UI', icon: '/shadcn.svg' },
+    // Add more technologies and their icons here
+  ];
+
   return (
     <>
-    <div className={containerClass}>
-      {/* About Me Section */}
-      <section id="about" className="mb-16">
-        <Card className={`bg-background shadow-lg rounded-lg overflow-hidden ${isEmoMode ? 'emo-mode-active border-red-500' : ''}`}>
-          <CardHeader className="flex flex-row items-center">
-            <Avatar className="w-20 h-20 mr-4">
-              <AvatarImage src="https://picsum.photos/200/200" alt="Wagner Guilherme" />
-              <AvatarFallback>WG</AvatarFallback>
-            </Avatar>
-            <CardTitle className="text-2xl font-semibold tracking-tight">{`Wagner Guilherme`}</CardTitle>
-          </CardHeader>
-          <CardContent className="py-4">
-            <CardDescription className="text-muted-foreground">
-              Desenvolvedor FullStack e entusiasta de Inteligência Artificial. Explorando novas tecnologias e criando soluções inovadoras.
-            </CardDescription>
-            <div className="mt-4 flex gap-4">
-              <Button variant="secondary" asChild className={`${isEmoMode ? 'emo-mode-active' : ''}`}>
-                <a href="https://github.com/wagner840" target="_blank" rel="noopener noreferrer" className="flex items-center">
-                  <Github className="mr-2 h-4 w-4" />
-                  GitHub
-                </a>
-              </Button>
-              <EmoToggleButton />
-            </div>
-          </CardContent>
-        </Card>
-      </section>
+      <div className={containerClass}>
+        {/* About Me Section */}
+        <section id="about" className="mb-16">
+          <Card className={`bg-background shadow-lg rounded-lg overflow-hidden ${isEmoMode ? 'emo-mode-active border-red-500' : ''}`}>
+            <CardHeader className="flex flex-row items-center">
+              <Avatar className="w-20 h-20 mr-4">
+                <AvatarImage src="https://picsum.photos/200/200" alt="Wagner Guilherme" />
+                <AvatarFallback>WG</AvatarFallback>
+              </Avatar>
+              <CardTitle className="text-2xl font-semibold tracking-tight">{`Wagner Guilherme`}</CardTitle>
+            </CardHeader>
+            <CardContent className="py-4">
+              <CardDescription className="text-muted-foreground">
+                Desenvolvedor FullStack e entusiasta de Inteligência Artificial. Explorando novas tecnologias e criando soluções inovadoras.
+              </CardDescription>
+              <div className="mt-4 flex gap-4">
+                <Button variant="secondary" asChild className={`${isEmoMode ? 'emo-mode-active' : ''}`}>
+                  <a href="https://github.com/wagner840" target="_blank" rel="noopener noreferrer" className="flex items-center">
+                    <Github className="mr-2 h-4 w-4" />
+                    GitHub
+                  </a>
+                </Button>
+                <EmoToggleButton />
+              </div>
+            </CardContent>
+          </Card>
+        </section>
 
-      {/* Projects Section */}
-      <section id="projects">
-        <h2 className="text-3xl font-semibold tracking-tight mb-8">Meus Projetos</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {fetchError ? (
-             <p className="text-red-500">Could not load projects. Please try again later.</p>
-          ) : (
-            filteredProjects.map((project) => (
-              <Card
-                key={project.id}
-                className={`relative bg-gradient-to-br from-card to-background shadow-xl rounded-xl overflow-hidden transition-all duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-xl hover:ring-2 hover:ring-primary hover:ring-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 hover:will-change-transform ${isEmoMode ? 'emo-mode-active border-red-500' : ''}`}
-              >
-                <CardHeader>
-                  <CardTitle className="text-xl font-semibold tracking-tight">{project.name}</CardTitle>
-                </CardHeader>
-                <CardContent className="py-4">
-                  <CardDescription className="text-muted-foreground">
-                    {project.description || 'Sem descrição disponível.'}
-                  </CardDescription>
-                  <div className="mt-4">
-                    <Button asChild className={`${isEmoMode ? 'emo-mode-active' : ''}`}>
-                      <a href={project.html_url} target="_blank" rel="noopener noreferrer" className="flex items-center">
-                        <Github className="mr-2 h-4 w-4" />
-                        Ver no GitHub
-                      </a>
-                    </Button>
+        {/* Projects Section */}
+        <section id="projects">
+          <h2 className="text-3xl font-semibold tracking-tight mb-8">Meus Projetos</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {fetchError ? (
+              <p className="text-red-500">Could not load projects. Please try again later.</p>
+            ) : (
+              filteredProjects.map((project) => (
+                <Card
+                  key={project.id}
+                  className={`relative bg-gradient-to-br from-card to-background shadow-xl rounded-xl overflow-hidden transition-all duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-xl hover:ring-2 hover:ring-primary hover:ring-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 hover:will-change-transform ${isEmoMode ? 'emo-mode-active border-red-500' : ''}`}
+                >
+                  <CardHeader>
+                    <CardTitle className="text-xl font-semibold tracking-tight">{project.name}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="py-4">
+                    <CardDescription className="text-muted-foreground">
+                      {project.description || 'Sem descrição disponível.'}
+                    </CardDescription>
+                    <div className="mt-4">
+                      <Button asChild className={`${isEmoMode ? 'emo-mode-active' : ''}`}>
+                        <a href={project.html_url} target="_blank" rel="noopener noreferrer" className="flex items-center">
+                          <Github className="mr-2 h-4 w-4" />
+                          Ver no GitHub
+                        </a>
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))
+            )}
+            {/* Mensagem se nenhum projeto for exibido após o filtro */}
+            {filteredProjects.length === 0 && !fetchError && (
+              <p className="text-muted-foreground">Nenhum projeto para exibir após o filtro.</p>
+            )}
+          </div>
+        </section>
+      </div>
+
+      {/* Technologies Carousel */}
+      {!isEmoMode && (
+        <section id="technologies" className="py-8 bg-secondary">
+          <div className="container mx-auto">
+            <h2 className="text-2xl font-semibold tracking-tight mb-4 text-center">Tecnologias Utilizadas</h2>
+            <ScrollArea className="w-full">
+              <div className="flex items-center space-x-4 p-4">
+                {technologies.map((tech, index) => (
+                  <div key={index} className="flex flex-col items-center justify-center w-32">
+                    <img src={tech.icon} alt={tech.name} className="h-16 w-16 object-contain mb-2" />
+                    <p className="text-sm text-muted-foreground">{tech.name}</p>
                   </div>
-                </CardContent>
-              </Card>
-            ))
-           )}
-           {/* Mensagem se nenhum projeto for exibido após o filtro */}
-           {filteredProjects.length === 0 && !fetchError && (
-            <p className="text-muted-foreground">Nenhum projeto para exibir após o filtro.</p>
-           )}
-        </div>
-      </section>
-    </div>
+                ))}
+              </div>
+            </ScrollArea>
+          </div>
+        </section>
+      )}
     </>
   );
 }
-
