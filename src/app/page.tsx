@@ -158,7 +158,7 @@ export default function Home() {
               <div className="flex items-center space-x-4 p-4">
                 {technologies.map((tech, index) => (
                   <div key={index} className="flex flex-col items-center justify-center w-32">
-                    <img src={`/${tech.icon}`} alt={tech.name} className="h-16 w-16 object-contain mb-2" />
+                    <img src={tech.icon} alt={tech.name} className="h-16 w-16 object-contain mb-2" />
                     <p className="text-sm text-muted-foreground">{tech.name}</p>
                   </div>
                 ))}
