@@ -174,3 +174,13 @@
   z-index: -1;
 }
 
+/* Selection color for EMO mode */
+::selection {
+  background-color: #ff0000; /* Red selection color */
+  color: #fff; /* White text color for selection */
+}
+
+/* Change primary color for chart */
+.emo-mode-active .recharts-line-curve {
+    stroke: #ff0000; /* Set the stroke color to red */
+}
