@@ -14,6 +14,8 @@ import {
   SiTypescript,
   SiNodedotjs,
 } from "react-icons/si";
+import { FaGem } from "react-icons/fa"; // Icon for Gemini
+import { TbRobot } from "react-icons/tb"; // Generic robot icon for Claude/GPT
 
 interface Project {
   id: number;
@@ -84,6 +86,9 @@ export default function Home() {
     { name: 'TypeScript', icon: SiTypescript },
     { name: 'Node.js', icon: SiNodedotjs },
     { name: 'Shadcn UI', icon: Package },//Using Package icon for Shadcn since there isn't one available
+    { name: 'Gemini', icon: FaGem }, // Add Gemini icon
+    { name: 'Claude 3.5', icon: TbRobot }, // Add Claude icon
+    { name: 'GPT', icon: TbRobot }, // Add GPT icon
     // Add more technologies and their icons here
   ];
 
