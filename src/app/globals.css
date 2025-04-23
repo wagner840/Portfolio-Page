@@ -113,6 +113,9 @@
   box-shadow: 0 4px 8px rgba(255, 0, 0, 0.2) !important;
    /* Red border for EMO mode */
 }
+.emo-mode-active #about .card{
+  border: 1px solid #500000 !important;
+}
 
 /* Button styling for EMO mode */
 .emo-mode-active button,
