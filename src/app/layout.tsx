@@ -2,6 +2,7 @@ import type {Metadata} from 'next';
 import {Geist, Geist_Mono} from 'next/font/google';
 import './globals.css';
 import { EmoModeProvider } from '@/components/emo-toggle-button';
+import { BloodEffect } from '@/components/blood-effect';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -16,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Portfolio de IA',
+  title: 'Portfolio de IA - Wagner Guilherme',
   description: 'Portfolio de aplicações e projetos de Inteligência Artificial de Wagner Guilherme.',
 };
 
@@ -26,9 +27,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <EmoModeProvider>{children}</EmoModeProvider>
+        <EmoModeProvider>
+          <>
+            <BloodEffect />
+            {children}
+          </>
+        </EmoModeProvider>
       </body>
     </html>
   );

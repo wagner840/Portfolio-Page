@@ -40,8 +40,13 @@ export function EmoToggleButton() {
   const { isEmoMode, setIsEmoMode } = useEmoMode();
 
   return (
-    <Button variant={isEmoMode ? 'destructive' : 'secondary'} onClick={() => setIsEmoMode(!isEmoMode)}>
-      EMO
+    <Button 
+      variant={isEmoMode ? 'destructive' : 'secondary'} 
+      onClick={() => setIsEmoMode(!isEmoMode)}
+      className={isEmoMode ? 'font-bold gothic-text' : ''}
+    >
+      {isEmoMode ? 'NORMAL' : 'EMO'}
     </Button>
   );
 }
+
