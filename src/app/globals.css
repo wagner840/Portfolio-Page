@@ -102,7 +102,6 @@
   background-color: #000 !important; /* Black background */
   color: #ff0000 !important; /* Red text */
   border-color: #ff0000 !important; /* Red borders */
-  font-family: var(--font-grenze-gotisch), cursive !important;
 }
 
 .emo-mode-active h1,
@@ -111,7 +110,6 @@
 .emo-mode-active h4,
 .emo-mode-active h5,
 .emo-mode-active h6 {
-  font-family: var(--font-grenze-gotisch), cursive !important;
   color: #ff0000 !important; /* Red headings */
 }
 
@@ -123,13 +121,11 @@
   background-color: #333 !important; /* Darker button background */
   color: #ff0000 !important; /* Red button text */
   border-color: #ff0000 !important; /* Red button borders */
-  font-family: var(--font-grenze-gotisch), cursive !important;
 }
 
 .emo-mode-active .card {
   background-color: #111 !important; /* Darker card background */
   border-color: #ff0000 !important; /* Red card borders */
-  font-family: var(--font-grenze-gotisch), cursive !important;
 }
 
 .emo-mode-active .bg-background {
@@ -142,18 +138,15 @@
 
 .emo-mode-active .text-muted-foreground {
     color: #c0c0c0 !important;
-    font-family: var(--font-grenze-gotisch), cursive !important;
 }
 
 .emo-mode-active p,
 .emo-mode-active [class*="Description"] {
   color: #c0c0c0 !important;
-  font-family: var(--font-grenze-gotisch), cursive !important;
 }
 
 /* Add a gothic-style font for certain elements */
 .gothic-text {
-  font-family: var(--font-grenze-gotisch), cursive !important;
   letter-spacing: 1px;
 }
 
@@ -202,5 +195,5 @@
 /* Apply gothic font to technology names in carousel */
 .emo-mode-active #technologies .flex .flex-col .items-center .justify-center .w-24 .shrink-0 p.text-sm {
   color: #ff0000 !important;
-  font-family: var(--font-grenze-gotisch), cursive !important;
 }
+
