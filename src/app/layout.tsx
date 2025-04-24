@@ -3,6 +3,7 @@ import {Geist, Geist_Mono, Grenze_Gotisch} from 'next/font/google';
 import './globals.css';
 import { EmoModeProvider } from '@/components/emo-toggle-button';
 import { BloodEffect } from '@/components/blood-effect';
+import EmoModeWrapper from '@/components/emo-mode-wrapper';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -37,13 +38,14 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body className={`${geistSans.variable} ${geistMono.variable} ${grenzeGotisch.variable} antialiased`}>
         <EmoModeProvider>
-          <>
-            <BloodEffect />
-            {children}
-          </>
+          <BloodEffect />
+          <EmoModeWrapper>
+            <div className="container mx-auto">
+              {children}
+            </div>
+          </EmoModeWrapper>
         </EmoModeProvider>
       </body>
     </html>
   );
 }
-

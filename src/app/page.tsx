@@ -80,7 +80,7 @@ export default function Home() {
     (project) => !excludedNames.includes(project.name)
   );
 
-  const containerClass = `container mx-auto py-10 ${isEmoMode ? 'emo-mode-active border-black' : ''}`;
+  const containerClass = `mx-auto py-10 ${isEmoMode ? 'emo-mode-active border-black' : ''}`;
 
   const technologies = [
     { name: 'Next.js', icon: SiNextdotjs },
@@ -175,7 +175,7 @@ export default function Home() {
 
       {/* Technologies Carousel */}
       <section id="technologies" className={`py-4 ${isEmoMode ? 'bg-black border-black border-2' : 'bg-secondary'}`}>
-        <div className="container mx-auto">
+        <div className="mx-auto w-full">
           <h2 className={`text-2xl font-semibold tracking-tight mb-4 text-center ${isEmoMode ? 'text-red-500 gothic-text' : ''}`}>
             Tecnologias Utilizadas
           </h2>
@@ -216,4 +216,3 @@ export default function Home() {
     </>
   );
 }
-
