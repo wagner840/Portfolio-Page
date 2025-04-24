@@ -143,7 +143,7 @@ export default function Home() {
           <h2 className="text-3xl font-semibold tracking-tight mb-8">Meus Projetos</h2>
             {isLoading ? (
                 <div className="flex flex-col items-center justify-center">
-                    <h2 className="text-2xl font-semibold tracking-tight mb-4">Loading Projects...</h2>
+                    <h2 className="text-2xl font-semibold tracking-tight mb-4">Carregando Projetos...</h2>
                     <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
                 </div>
             ) : (
@@ -227,3 +227,4 @@ export default function Home() {
     </>
   );
 }
+
