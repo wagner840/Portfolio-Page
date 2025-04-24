@@ -1,4 +1,4 @@
-'use client';
+ 'use client';
 
 import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
@@ -80,7 +80,7 @@ export default function Home() {
     (project) => !excludedNames.includes(project.name)
   );
 
-  const containerClass = `container mx-auto py-10 ${isEmoMode ? 'emo-mode-active' : ''}`;
+  const containerClass = `container mx-auto py-10 ${isEmoMode ? 'emo-mode-active border-black' : ''}`;
 
   const technologies = [
     { name: 'Next.js', icon: SiNextdotjs },
@@ -104,34 +104,13 @@ export default function Home() {
   const scrollAmount = -1; // Smaller scroll amount for smoother animation, negative for right-to-left
   const transitionDuration = 20; // Reduced duration for smoother, faster transition
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      if (scrollRef.current) {
-        const maxScroll = scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
-        let newPosition = scrollPosition + scrollAmount;
-
-        if (newPosition < 0) {
-          newPosition = maxScroll; // Reset to the end
-        }
-
-        setScrollPosition(newPosition);
-        scrollRef.current.scrollTo({
-          left: newPosition,
-          behavior: 'smooth',
-        });
-      }
-    }, transitionDuration);
-
-    return () => clearInterval(intervalId); // Clean up on unmount
-  }, [scrollPosition, scrollAmount, transitionDuration]);
-
 
   return (
     <>
       <div className={containerClass}>
         {/* About Me Section */}
         <section id="about" className="mb-16">
-          <Card className={`bg-background shadow-lg rounded-lg overflow-hidden ${isEmoMode ? 'emo-mode-active border-red-500' : ''}`}>
+          <Card className={`bg-background shadow-lg rounded-lg overflow-hidden ${isEmoMode ? 'emo-mode-active border-black' : ''}`}>
             <CardHeader className="flex flex-row items-center">
               <Avatar className="w-20 h-20 mr-4">
                 <AvatarImage src="https://picsum.photos/200/200" alt="Wagner Guilherme" />
@@ -166,8 +145,7 @@ export default function Home() {
               filteredProjects.map((project) => (
                 <Card
                   key={project.id}
-                  className={`relative bg-gradient-to-br from-card to-background shadow-xl rounded-xl overflow-hidden transition-all duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-xl hover:ring-2 hover:ring-primary hover:ring-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 hover:will-change-transform ${isEmoMode ? 'emo-mode-active border-red-500' : ''}`}
-                >
+                  className={`relative bg-gradient-to-br from-card to-background shadow-xl rounded-lg overflow-hidden transition-all duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-xl hover:ring-2 hover:ring-primary hover:ring-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 hover:will-change-transform ${isEmoMode ? 'emo-mode-active border-black' : ''}`}>
                   <CardHeader>
                     <CardTitle className="text-xl font-semibold tracking-tight">{project.name}</CardTitle>
                   </CardHeader>
@@ -196,41 +174,45 @@ export default function Home() {
       </div>
 
       {/* Technologies Carousel */}
-      {!isEmoMode && (
-        <section id="technologies" className="py-8 bg-secondary">
-          <div className="container mx-auto">
-            <h2 className="text-2xl font-semibold tracking-tight mb-4 text-center">Tecnologias Utilizadas</h2>
-            <div className="overflow-hidden relative">
-              <div
-                ref={scrollRef}
-                className="flex items-center space-x-4 p-4 transition-transform duration-2000 whitespace-nowrap" // Increased duration for smoother transition
-              >
-                {technologies.map((tech, index) => (
-                  <div key={index} className="flex flex-col items-center justify-center w-32 shrink-0">
-                    {tech.icon ? (
-                      <tech.icon className="h-16 w-16 object-contain mb-2" />
-                    ) : (
-                      <Package className="h-16 w-16 object-contain mb-2" /> // Fallback icon
-                    )}
-                    <p className="text-sm text-muted-foreground">{tech.name}</p>
-                  </div>
-                ))}
-                {/* Duplicate technologies to create a seamless loop */}
-                {technologies.map((tech, index) => (
-                  <div key={`duplicate-${index}`} className="flex flex-col items-center justify-center w-32 shrink-0">
-                    {tech.icon ? (
-                      <tech.icon className="h-16 w-16 object-contain mb-2" />
-                    ) : (
-                      <Package className="h-16 w-16 object-contain mb-2" /> // Fallback icon
-                    )}
-                    <p className="text-sm text-muted-foreground">{tech.name}</p>
-                  </div>
-                ))}
-              </div>
+      <section id="technologies" className={`py-4 ${isEmoMode ? 'bg-black border-black border-2' : 'bg-secondary'}`}>
+        <div className="container mx-auto">
+          <h2 className={`text-2xl font-semibold tracking-tight mb-4 text-center ${isEmoMode ? 'text-red-500 gothic-text' : ''}`}>
+            Tecnologias Utilizadas
+          </h2>
+          <div className="overflow-hidden relative">
+            <div
+              ref={scrollRef}
+              className="flex items-center space-x-4 p-4 whitespace-nowrap carousel-container"
+            >
+              {technologies.map((tech, index) => (
+                <div key={index} className="flex flex-col items-center justify-center w-24 shrink-0">
+                  {tech.icon ? (
+                    <tech.icon className={`h-12 w-12 object-contain mb-2 ${isEmoMode ? 'emo-icon-filter' : ''}`} />
+                  ) : (
+                    <Package className={`h-12 w-12 object-contain mb-2 ${isEmoMode ? 'emo-icon-filter' : ''}`} /> // Fallback icon
+                  )}
+                  <p className={`text-sm ${isEmoMode ? 'text-red-500 gothic-text' : 'text-muted-foreground'}`}>
+                    {tech.name}
+                  </p>
+                </div>
+              ))}
+              {/* Duplicate technologies to create a seamless loop */}
+              {technologies.map((tech, index) => (
+                <div key={`duplicate-${index}`} className="flex flex-col items-center justify-center w-24 shrink-0">
+                  {tech.icon ? (
+                    <tech.icon className={`h-12 w-12 object-contain mb-2 ${isEmoMode ? 'emo-icon-filter' : ''}`} />
+                  ) : (
+                    <Package className={`h-12 w-12 object-contain mb-2 ${isEmoMode ? 'emo-icon-filter' : ''}`} /> // Fallback icon
+                  )}
+                  <p className={`text-sm ${isEmoMode ? 'text-red-500 gothic-text' : 'text-muted-foreground'}`}>
+                    {tech.name}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
     </>
   );
 }

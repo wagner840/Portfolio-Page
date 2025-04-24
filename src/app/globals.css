@@ -1,79 +1,87 @@
+/* Keyframes for the carousel animation */
+@keyframes carousel-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%); /* Adjust based on content width */
+  }
+}
+
+/* Apply the animation to the carousel */
+.carousel-container {
+  animation: carousel-scroll linear infinite;
+  animation-duration: 20s;
+}
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    /* Frutiger Aero inspired colors */
-    --background: 210 40% 98%; /* Light blue-ish background */
-    --foreground: 222.2 47.4% 11.2%; /* Dark text */
-    --card: 0 0% 100%; /* White card */
-    --card-foreground: 222.2 47.4% 11.2%;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+ 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 47.4% 11.2%;
-    --primary: 217.2 91.2% 59.8%; /* A shade of blue */
-    --primary-foreground: 0 0% 98%; /* White text on primary */
-    --secondary: 210 40% 96.1%; /* Light gray-blue */
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%; /* Light gray-blue */
-    --muted-foreground: 215.4 16.3% 35%; /* Muted text - Adjusted for better contrast */
-    --accent: 210 40% 96.1%; /* Light gray-blue */
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+ 
+    --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
+
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 214.3 31.7% 91.4%; /* Light border */
-    --input: 214.3 31.7% 91.4%;
-    --ring: 217.2 91.2% 59.8%;
-    --chart-1: 210 40% 98%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+ 
+    --ring: 222.2 84% 4.9%;
+
     --radius: 0.5rem;
-    /* Assuming a light sidebar for now, adjust if needed */
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 222.2 47.4% 11.2%;
-    --sidebar-primary: 217.2 91.2% 59.8%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 210 40% 96.1%;
-    --sidebar-accent-foreground: 222.2 47.4% 11.2%;
-    --sidebar-border: 214.3 31.7% 91.4%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
   .dark {
-    /* Keeping dark mode for now, can adjust later */
-    --background: 208 13% 11%;
-    --foreground: 235 46% 92%;
-    --card: 208 13% 11%;
-    --card-foreground: 235 46% 92%;
-    --popover: 208 13% 11%;
-    --popover-foreground: 235 46% 92%;
-    --primary: 50 98% 50%;
-    --primary-foreground: 208 13% 11%;
-    --secondary: 208 13% 15%;
-    --secondary-foreground: 235 46% 92%;
-    --muted: 208 13% 15%;
-    --muted-foreground: 235 46% 70%;
-    --accent: 64 80% 51%;
-    --accent-foreground: 208 13% 11%;
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+ 
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.9%;
+ 
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 208 13% 20%;
-    --input: 208 13% 20%;
-    --ring: 50 98% 50%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-    --sidebar-background: 208 13% 15%;
-    --sidebar-foreground: 235 46% 70%;
-    --sidebar-primary: 50 98% 50%;
-    --sidebar-primary-foreground: 208 13% 11%;
-    --sidebar-accent: 64 80% 51%;
-    --sidebar-accent-foreground: 208 13% 11%;
-    --sidebar-border: 208 13% 20%;
-    --sidebar-ring: 50 98% 50%;
+    --destructive-foreground: 210 40% 98%;
+ 
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+ 
+    --ring: 212.7 26.8% 8.8%;
   }
 }
 
@@ -82,63 +90,55 @@
     @apply border-border;
   }
   body {
-    @apply text-foreground;
-    font-family: var(--font-geist-sans);
-    background-color: hsl(var(--background));
-    /* Adding a subtle gradient background */
-    background-image: linear-gradient(to bottom right, hsl(var(--background)), hsl(var(--secondary)));
+    @apply bg-background text-foreground;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
   }
 }
 
-/* Styles for Emo Mode */
+/* Styles for EMO mode */
 .emo-mode-active {
-  /* Base background */
-  background-color: #000 !important; 
-  color: #ff0000 !important;
-  background-image: none !important;
+  background-color: #000 !important; /* Black background */
+  color: #ff0000 !important; /* Red text */
+  border-color: #ff0000 !important; /* Red borders */
 }
 
-.emo-mode-active body {
-  background-color: #000 !important;
-  color: #ff0000 !important;
-  font-family: 'Times New Roman', serif !important;
-  background-image: none !important;
-}
-
-/* Cards styling for EMO mode */
-.emo-mode-active .card,
-.emo-mode-active [class*="Card"] {
-  background-color: #111 !important;
-  border: 1px solid #500000 !important;
-  box-shadow: 0 4px 8px rgba(255, 0, 0, 0.2) !important;
-   /* Red border for EMO mode */
-}
-.emo-mode-active #about .card{
-  border: 1px solid #500000 !important;
-}
-
-/* Button styling for EMO mode */
-.emo-mode-active button,
-.emo-mode-active [class*="Button"] {
-  background-color: #500000 !important;
-  color: #fff !important;
-  border: 1px solid #ff0000 !important;
-}
-
-.emo-mode-active button:hover,
-.emo-mode-active [class*="Button"]:hover {
-  background-color: #800000 !important;
-  box-shadow: 0 0 8px rgba(255, 0, 0, 0.5) !important;
-}
-
-/* Typography styling for EMO mode */
 .emo-mode-active h1,
 .emo-mode-active h2,
 .emo-mode-active h3,
-.emo-mode-active [class*="Title"] {
-  color: #ff0000 !important;
-  font-family: 'Metal Mania', 'Cinzel', serif !important;
-  text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.5) !important;
+.emo-mode-active h4,
+.emo-mode-active h5,
+.emo-mode-active h6 {
+  font-family: var(--font-grenze-gotisch), cursive !important;
+  color: #ff0000 !important; /* Red headings */
+}
+
+.emo-mode-active a {
+  color: #ff0000 !important; /* Red links */
+}
+
+.emo-mode-active button {
+  background-color: #333 !important; /* Darker button background */
+  color: #ff0000 !important; /* Red button text */
+  border-color: #ff0000 !important; /* Red button borders */
+}
+
+.emo-mode-active .card {
+  background-color: #111 !important; /* Darker card background */
+  border-color: #ff0000 !important; /* Red card borders */
+}
+
+.emo-mode-active .bg-background {
+    background-color: #000 !important;
+}
+
+.emo-mode-active .bg-card {
+    background-color: #111 !important;
+}
+
+.emo-mode-active .text-muted-foreground {
+    color: #c0c0c0 !important;
 }
 
 .emo-mode-active p,
@@ -148,7 +148,7 @@
 
 /* Add a gothic-style font for certain elements */
 .gothic-text {
-  font-family: 'Metal Mania', 'Cinzel', serif !important;
+  font-family: var(--font-grenze-gotisch), cursive !important;
   letter-spacing: 1px;
 }
 
@@ -158,7 +158,7 @@
     background-position: 0 0;
   }
   100% {
-    background-position: 0 100%;
+    background-position: 100% 100%;
   }
 }
 
@@ -184,39 +184,18 @@
   color: #fff; /* White text color for selection */
 }
 
-/* Change primary color for chart */
-.emo-mode-active .recharts-line-curve {
-    stroke: #ff0000; /* Set the stroke color to red */
+/* EMO mode specific classes for carousel items */
+.emo-icon-filter {
+  filter: brightness(0.8) sepia(1) !important;
 }
 
-.emo-mode-active .bg-gradient-to-br:hover {
-  box-shadow: 0 0 10px rgba(255, 0, 0, 0.7); /* Add a red glow effect */
-}
-
-/* Specific EMO mode adjustments for button backgrounds*/
-.emo-mode-active .bg-gradient-to-br .bg-background {
-    background-color: #330000 !important; /* Darker red for better contrast */
-}
-
-/* EMO mode adjustments for card borders */
+/* EMO mode project card styles */
 .emo-mode-active .bg-gradient-to-br {
-    border: 1px solid #500000; /* Red border */
+    background-image: linear-gradient(to bottom right, #111, #000) !important;
 }
 
-.emo-mode-active .card {
-    border: 1px solid #500000 !important; /* Red border */
-}
-/*Hover of the cards*/
-.bg-gradient-to-br:hover {
-  box-shadow: 0 0 10px rgba(100, 100, 100, 0.7); /* Add a red glow effect */
-}
-
-/* Emo mode active hover*/
-.emo-mode-active .bg-gradient-to-br:hover {
-  box-shadow: 0 0 10px rgba(255, 0, 0, 0.7); /* Add a red glow effect */
-}
-/*Selection color*/
-::selection {
-  background-color: #ff0000; /* Red selection color */
-  color: #fff; /* White text color for selection */
+/* Apply gothic font to technology names in carousel */
+.emo-mode-active #technologies .flex .flex-col .items-center .justify-center .w-24 .shrink-0 p.text-sm {
+  color: #ff0000 !important;
+  font-family: var(--font-grenze-gotisch), cursive !important;
 }

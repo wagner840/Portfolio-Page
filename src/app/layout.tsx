@@ -1,5 +1,5 @@
 import type {Metadata} from 'next';
-import {Geist, Geist_Mono} from 'next/font/google';
+import {Geist, Geist_Mono, Grenze_Gotisch} from 'next/font/google';
 import './globals.css';
 import { EmoModeProvider } from '@/components/emo-toggle-button';
 import { BloodEffect } from '@/components/blood-effect';
@@ -16,6 +16,13 @@ const geistMono = Geist_Mono({
   display: 'swap',
 });
 
+const grenzeGotisch = Grenze_Gotisch({
+  variable: '--font-grenze-gotisch',
+  subsets: ['latin'],
+  weight: '400', // Specify a weight if needed
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
   title: 'Portfolio de IA - Wagner Guilherme',
   description: 'Portfolio de aplicações e projetos de Inteligência Artificial de Wagner Guilherme.',
@@ -28,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${grenzeGotisch.variable} antialiased`}>
         <EmoModeProvider>
           <>
             <BloodEffect />
