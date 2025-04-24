@@ -174,7 +174,7 @@ export default function Home() {
       </div>
 
       {/* Technologies Carousel */}
-      <section id="technologies" className={`py-4 ${isEmoMode ? 'bg-black border-black border-2' : 'bg-secondary'}`}>
+      <section id="technologies" className={`py-4 ${isEmoMode ? 'bg-black border-black border-2' : 'bg-background'}`}>
         <div className="mx-auto w-full">
           <h2 className={`text-2xl font-semibold tracking-tight mb-4 text-center ${isEmoMode ? 'text-red-500 gothic-text' : ''}`}>
             Tecnologias Utilizadas
@@ -216,3 +216,4 @@ export default function Home() {
     </>
   );
 }
+
