@@ -52,6 +52,7 @@ async function getGitHubRepos(): Promise<Project[]> {
 export default function Home() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [fetchError, setFetchError] = useState(false);
+    const [isLoading, setIsLoading] = useState(true); // Add loading state
   const { isEmoMode } = useEmoMode();
 
   useEffect(() => {
@@ -62,7 +63,9 @@ export default function Home() {
       } catch (error) {
         console.error(error);
         setFetchError(true);
-      }
+      } finally {
+                setIsLoading(false); // Set loading to false when data is loaded or error occurs
+            }
     }
 
     loadProjects();
@@ -138,38 +141,46 @@ export default function Home() {
         {/* Projects Section */}
         <section id="projects">
           <h2 className="text-3xl font-semibold tracking-tight mb-8">Meus Projetos</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {fetchError ? (
-              <p className="text-red-500">Could not load projects. Please try again later.</p>
+            {isLoading ? (
+                <div className="flex flex-col items-center justify-center">
+                    <h2 className="text-2xl font-semibold tracking-tight mb-4">Loading Projects...</h2>
+                    <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
+                </div>
             ) : (
-              filteredProjects.map((project) => (
-                <Card
-                  key={project.id}
-                  className={`relative bg-gradient-to-br from-card to-background shadow-xl rounded-lg overflow-hidden transition-all duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-xl hover:ring-2 hover:ring-primary hover:ring-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 hover:will-change-transform ${isEmoMode ? 'emo-mode-active border-black' : ''}`}>
-                  <CardHeader>
-                    <CardTitle className="text-xl font-semibold tracking-tight">{project.name}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="py-4">
-                    <CardDescription className="text-muted-foreground">
-                      {project.description || 'Sem descrição disponível.'}
-                    </CardDescription>
-                    <div className="mt-4">
-                      <Button asChild className={`${isEmoMode ? 'emo-mode-active' : ''}`}>
-                        <a href={project.html_url} target="_blank" rel="noopener noreferrer" className="flex items-center">
-                          <Github className="mr-2 h-4 w-4" />
-                          Ver no GitHub
-                        </a>
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {fetchError ? (
+                        <p className="text-red-500">Could not load projects. Please try again later.</p>
+                    ) : (
+                        filteredProjects.map((project) => (
+                            <Card
+                                key={project.id}
+                                className={`relative bg-gradient-to-br from-card to-background shadow-xl rounded-lg overflow-hidden transition-all duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-xl hover:ring-2 hover:ring-primary hover:ring-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 hover:will-change-transform ${isEmoMode ? 'emo-mode-active border-black' : ''}`}>
+                                <CardHeader>
+                                    <CardTitle className="text-xl font-semibold tracking-tight">{project.name}</CardTitle>
+                                </CardHeader>
+                                <CardContent className="py-4">
+                                    <CardDescription className="text-muted-foreground">
+                                        {project.description || 'Sem descrição disponível.'}
+                                    </CardDescription>
+                                    <div className="mt-4">
+                                        <Button asChild className={`${isEmoMode ? 'emo-mode-active' : ''}`}>
+                                            <a href={project.html_url} target="_blank" rel="noopener noreferrer" className="flex items-center">
+                                                <Github className="mr-2 h-4 w-4" />
+                                                Ver no GitHub
+                                            </a>
+                                        </Button>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        ))
+                    )}
+                    {/* Mensagem se nenhum projeto for exibido após o filtro */}
+                    {filteredProjects.length === 0 && !fetchError && (
+                        <p className="text-muted-foreground">Nenhum projeto para exibir após o filtro.</p>
+                    )}
+                </div>
             )}
-            {/* Mensagem se nenhum projeto for exibido após o filtro */}
-            {filteredProjects.length === 0 && !fetchError && (
-              <p className="text-muted-foreground">Nenhum projeto para exibir após o filtro.</p>
-            )}
-          </div>
+          
         </section>
       </div>
 
@@ -216,4 +227,3 @@ export default function Home() {
     </>
   );
 }
-
