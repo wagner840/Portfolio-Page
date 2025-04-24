@@ -94,8 +94,14 @@ const translations = {
   }
 };
 
-function translate(key: keyof typeof translations, language: string): string {
-  return translations[key][language] || translations[key]['en'];
+function translate(key: string, language: string): string {
+    const translationObject = translations[key as keyof typeof translations];
+    if (translationObject && translationObject[language as keyof typeof translationObject]) {
+        return translationObject[language as keyof typeof translationObject] as string;
+    } else if (translationObject && translationObject['en']) {
+        return translationObject['en'] as string;
+    }
+    return key;
 }
 
 export default function Home() {
@@ -352,3 +358,4 @@ export default function Home() {
     </>
   );
 }
+
